@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yousuf & Arwa | Engagement</title>
+<meta property="og:title" content="Yousuf & Arwa - Engagement Invitation">
+<meta property="og:description" content="We fall in love in October. 16 October 2026">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#2a0f1c;
+    --bg2:#12070e;
+    --gold:#f2c879;
+    --gold2:#ffe5b0;
+    --rose:#ff7a9c;
+    --cream:#fff4e3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:radial-gradient(ellipse at 50% 30%, var(--bg1) 0%, var(--bg2) 75%);
+    color:var(--cream);
+    font-family:'Cormorant Garamond', Georgia, serif;
+    overflow-x:hidden;
+    min-height:100vh;
+    min-height:100dvh;
+  }
+
+  /* twinkling background stars */
+  #sky{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .tw{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.2;
+      animation:twinkle var(--d,3s) ease-in-out infinite;animation-delay:var(--dl,0s)}
+  @keyframes twinkle{0%,100%{opacity:.1;transform:scale(.8)}50%{opacity:.9;transform:scale(1.4)}}
+
+  /* falling leaves */
+  .leaf{position:fixed;top:-40px;font-size:var(--s,18px);pointer-events:none;z-index:1;opacity:.75;
+        animation:fall var(--t,14s) linear forwards}
+  @keyframes fall{
+    0%{transform:translate3d(0,-40px,0) rotate(0)}
+    100%{transform:translate3d(var(--dx,60px),110vh,0) rotate(540deg)}
+  }
+
+  /* ---------- intro star ---------- */
+  #intro{
+    position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;cursor:pointer;
+    transition:opacity .8s ease;
+  }
+  #intro.gone{opacity:0;pointer-events:none}
+  #starWrap{width:min(62vw,300px);aspect-ratio:1;position:relative;
+            animation:bob 3s ease-in-out infinite}
+  #starWrap svg{width:100%;height:100%;overflow:visible;
+                filter:drop-shadow(0 0 18px rgba(242,200,121,.75))}
+  @keyframes bob{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.04)}}
+  .petal{transform-origin:0 0}
+  .petal polygon{fill:url(#gold);stroke:#fff1c9;stroke-width:1;stroke-linejoin:round}
+  #intro.open #starWrap{animation:none}
+  #intro.open .petal polygon{animation:petalOut 1.3s cubic-bezier(.5,0,.3,1) forwards}
+  @keyframes petalOut{
+    0%{transform:translateY(0) scale(1);opacity:1}
+    35%{transform:translateY(-18px) scale(1.05);opacity:1}
+    100%{transform:translateY(-230px) scale(.6) rotate(25deg);opacity:0}
+  }
+  #core{fill:#fff6da;opacity:0;transform-origin:0 0}
+  #intro.open #core{animation:coreGlow 1.3s ease forwards}
+  @keyframes coreGlow{0%{opacity:.2;transform:scale(.4)}40%{opacity:1;transform:scale(3.2)}100%{opacity:0;transform:scale(9)}}
+  #hint{
+    margin-top:34px;font-size:1.25rem;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--gold2);animation:pulse 2s ease-in-out infinite;text-align:center;padding:0 20px;
+  }
+  #intro.open #hint{opacity:0;transition:opacity .3s;animation:none}
+  @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+
+  /* ---------- invitation ---------- */
+  #card{
+    position:relative;z-index:3;min-height:100vh;min-height:100dvh;
+    display:flex;align-items:center;justify-content:center;padding:28px 16px;
+    opacity:0;transform:scale(.6);pointer-events:none;
+  }
+  #card.show{animation:cardIn 1.4s cubic-bezier(.2,.9,.3,1) .5s forwards;pointer-events:auto}
+  @keyframes cardIn{
+    0%{opacity:0;transform:scale(.4)}
+    100%{opacity:1;transform:scale(1)}
+  }
+  .frame{
+    width:min(94vw,560px);text-align:center;padding:44px 26px 38px;
+    border:1px solid rgba(242,200,121,.55);border-radius:22px;
+    background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    box-shadow:0 0 60px rgba(255,122,156,.18), inset 0 0 40px rgba(242,200,121,.06);
+    position:relative;
+  }
+  .frame::before{
+    content:"";position:absolute;inset:8px;border:1px dashed rgba(242,200,121,.28);border-radius:16px;pointer-events:none
+  }
+  .small{letter-spacing:.38em;text-transform:uppercase;font-size:.9rem;color:var(--gold)}
+  .names{
+    font-family:'Great Vibes',cursive;font-size:clamp(3rem,13vw,4.8rem);line-height:1.1;
+    margin:16px 0 6px;
+    background:linear-gradient(90deg,var(--gold2),var(--rose),var(--gold2));
+    background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shine 5s linear infinite;
+  }
+  @keyframes shine{to{background-position:200% center}}
+  .amp{display:block;font-size:.55em;color:var(--gold);-webkit-text-fill-color:var(--gold)}
+  .tagline{
+    font-family:'Great Vibes',cursive;font-size:clamp(1.7rem,7vw,2.3rem);color:var(--rose);margin:10px 0 18px
+  }
+  .divider{display:flex;align-items:center;gap:12px;justify-content:center;color:var(--gold);margin:14px 0}
+  .divider::before,.divider::after{content:"";height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .divider::after{transform:scaleX(-1)}
+  .date{font-size:1.5rem;font-weight:600;letter-spacing:.12em;color:var(--cream)}
+  .sub{margin-top:6px;font-size:1.1rem;opacity:.85}
+
+  #count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px auto 4px;max-width:420px}
+  .box{
+    padding:14px 4px 10px;border-radius:14px;border:1px solid rgba(242,200,121,.4);
+    background:rgba(0,0,0,.28);
+  }
+  .box b{display:block;font-size:clamp(1.7rem,8vw,2.4rem);font-weight:600;color:var(--gold2);
+         font-variant-numeric:tabular-nums;line-height:1.1}
+  .box span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8}
+  #done{display:none;font-family:'Great Vibes',cursive;font-size:2.4rem;color:var(--gold2);margin-top:22px}
+
+  /* ---------- butterflies & hearts ---------- */
+  .bf{position:fixed;left:0;top:0;width:38px;height:38px;z-index:4;pointer-events:none;will-change:transform}
+  .bf svg{width:100%;height:100%;overflow:visible}
+  .wings{transform-origin:20px 20px;animation:flap .22s ease-in-out infinite alternate}
+  @keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.25)}}
+  .heart{
+    position:fixed;z-index:3;pointer-events:none;line-height:1;
+    color:var(--c,#ff5d8f);font-size:var(--s,14px);
+    text-shadow:0 0 8px var(--c,#ff5d8f);
+    animation:heartUp var(--t,2.6s) ease-out forwards;
+  }
+  @keyframes heartUp{
+    0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+    15%{opacity:1}
+    100%{opacity:0;transform:translate(calc(-50% + var(--dx,0px)),calc(-50% - var(--dy,90px))) scale(1.15) rotate(var(--r,0deg))}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .leaf,.names{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<div id="sky"></div>
+
+<!-- Intro: tap the star -->
+<div id="intro">
+  <div id="starWrap">
+    <svg viewBox="-100 -100 200 200" aria-label="Open the invitation">
+      <defs>
+        <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff0bf"/>
+          <stop offset="1" stop-color="#e9a94a"/>
+        </linearGradient>
+      </defs>
+      <g class="petal" transform="rotate(0)"><polygon points="0,0 -21.2,-29.1 0,-90 21.2,-29.1"/></g>
+      <g class="petal" transform="rotate(72)"><polygon points="0,0 -21.2,-29.1 0,-90 21.2,-29.1"/></g>
+      <g class="petal" transform="rotate(144)"><polygon points="0,0 -21.2,-29.1 0,-90 21.2,-29.1"/></g>
+      <g class="petal" transform="rotate(216)"><polygon points="0,0 -21.2,-29.1 0,-90 21.2,-29.1"/></g>
+      <g class="petal" transform="rotate(288)"><polygon points="0,0 -21.2,-29.1 0,-90 21.2,-29.1"/></g>
+      <circle id="core" r="14"/>
+    </svg>
+  </div>
+  <div id="hint">Tap the star</div>
+</div>
+
+<!-- Invitation -->
+<main id="card">
+  <div class="frame">
+    <div class="small">You are invited to the engagement of</div>
+    <h1 class="names">Yousuf <span class="amp">&</span> Arwa</h1>
+    <div class="tagline">We fall in love in October</div>
+
+    <div class="divider">&#10084;</div>
+
+    <div class="date">16 · OCTOBER · 2026</div>
+    <div class="sub">Join us to celebrate our engagement</div>
+
+    <div id="count">
+      <div class="box"><b id="d">00</b><span>Days</span></div>
+      <div class="box"><b id="h">00</b><span>Hours</span></div>
+      <div class="box"><b id="m">00</b><span>Minutes</span></div>
+      <div class="box"><b id="s">00</b><span>Seconds</span></div>
+    </div>
+    <div id="done">Today is the day! &#10084;</div>
+  </div>
+</main>
+
+<script>
+(function(){
+  /* ====== EDIT HERE: event date & time (year, month 0-11, day, hour, minute) ====== */
+  var TARGET = new Date(2026, 9, 16, 19, 0, 0);   // 16 Oct 2026 - 7:00 PM
+  /* ================================================================================ */
+
+  /* background stars */
+  var sky = document.getElementById('sky');
+  for (var i = 0; i < 70; i++){
+    var t = document.createElement('div');
+    t.className = 'tw';
+    t.style.left = Math.random()*100 + '%';
+    t.style.top  = Math.random()*100 + '%';
+    t.style.setProperty('--d', (2 + Math.random()*4) + 's');
+    t.style.setProperty('--dl', (Math.random()*4) + 's');
+    sky.appendChild(t);
+  }
+
+  /* falling autumn leaves */
+  var leaves = ['\uD83C\uDF42','\uD83C\uDF41'];
+  function spawnLeaf(){
+    var l = document.createElement('div');
+    l.className = 'leaf';
+    l.textContent = leaves[Math.floor(Math.random()*leaves.length)];
+    l.style.left = Math.random()*100 + 'vw';
+    l.style.setProperty('--s', (14 + Math.random()*14) + 'px');
+    l.style.setProperty('--t', (10 + Math.random()*8) + 's');
+    l.style.setProperty('--dx', (-80 + Math.random()*160) + 'px');
+    document.body.appendChild(l);
+    setTimeout(function(){ l.remove(); }, 19000);
+  }
+  setInterval(spawnLeaf, 1800);
+  spawnLeaf();
+
+  /* countdown */
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function tick(){
+    var diff = TARGET - new Date();
+    if (diff <= 0){
+      document.getElementById('count').style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+      return;
+    }
+    var s = Math.floor(diff/1000);
+    var d = Math.floor(s/86400); s -= d*86400;
+    var h = Math.floor(s/3600);  s -= h*3600;
+    var m = Math.floor(s/60);    s -= m*60;
+    document.getElementById('d').textContent = pad(d);
+    document.getElementById('h').textContent = pad(h);
+    document.getElementById('m').textContent = pad(m);
+    document.getElementById('s').textContent = pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* hearts */
+  var colors = ['#ff5d8f','#ff7a9c','#ff3d6e','#ffa0b8','#f2c879','#ff8fb1'];
+  var heartCount = 0;
+  function heart(x, y){
+    if (heartCount > 140) return;
+    heartCount++;
+    var h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = '\u2665';
+    h.style.left = x + 'px';
+    h.style.top  = y + 'px';
+    h.style.setProperty('--c', colors[Math.floor(Math.random()*colors.length)]);
+    h.style.setProperty('--s', (10 + Math.random()*14) + 'px');
+    h.style.setProperty('--t', (2.2 + Math.random()*1.6) + 's');
+    h.style.setProperty('--dx', (-30 + Math.random()*60) + 'px');
+    h.style.setProperty('--dy', (70 + Math.random()*90) + 'px');
+    h.style.setProperty('--r', (-30 + Math.random()*60) + 'deg');
+    document.body.appendChild(h);
+    setTimeout(function(){ h.remove(); heartCount--; }, 4000);
+  }
+
+  /* butterflies */
+  var BF_SVG =
+    '<svg viewBox="0 0 40 40"><g class="wings">' +
+    '<path d="M20 20 C30 3 41 8 36 18 C34 24 26 24 20 20Z" fill="COLOR1"/>' +
+    '<path d="M20 21 C28 22 35 30 30 35 C26 37 21 29 20 21Z" fill="COLOR2"/>' +
+    '<path d="M20 20 C10 3 -1 8 4 18 C6 24 14 24 20 20Z" fill="COLOR1"/>' +
+    '<path d="M20 21 C12 22 5 30 10 35 C14 37 19 29 20 21Z" fill="COLOR2"/>' +
+    '</g><rect x="19" y="12" width="2" height="18" rx="1" fill="#3a1a2a"/>' +
+    '<path d="M20 12 Q16 5 13 4 M20 12 Q24 5 27 4" stroke="#3a1a2a" stroke-width="1" fill="none"/></svg>';
+  var palettes = [
+    ['#ff7a9c','#ffc2d4'],
+    ['#f2c879','#ffe5b0'],
+    ['#c58bff','#e6ccff'],
+    ['#ff9a5c','#ffd0a8'],
+    ['#6fd3ff','#c6eeff']
+  ];
+  var flies = [];
+  var W = window.innerWidth, H = window.innerHeight;
+  window.addEventListener('resize', function(){ W = innerWidth; H = innerHeight; });
+
+  function newTarget(f){
+    f.tx = 40 + Math.random()*(W - 80);
+    f.ty = 60 + Math.random()*(H - 120);
+  }
+  function makeButterfly(){
+    var p = palettes[Math.floor(Math.random()*palettes.length)];
+    var el = document.createElement('div');
+    el.className = 'bf';
+    el.innerHTML = BF_SVG.replace(/COLOR1/g,p[0]).replace(/COLOR2/g,p[1]);
+    document.body.appendChild(el);
+    var side = Math.random() < .5;
+    var f = {
+      el: el,
+      x: side ? -50 : W + 50,
+      y: Math.random()*H,
+      vx: side ? 1.5 : -1.5,
+      vy: 0,
+      speed: 1.6 + Math.random()*1.2,
+      wob: Math.random()*6.28,
+      lastHeart: 0
+    };
+    newTarget(f);
+    flies.push(f);
+  }
+
+  var last = performance.now();
+  function loop(now){
+    var dt = Math.min(2, (now - last)/16.67); last = now;
+    for (var i = 0; i < flies.length; i++){
+      var f = flies[i];
+      var dx = f.tx - f.x, dy = f.ty - f.y;
+      var dist = Math.hypot(dx, dy);
+      if (dist < 50) newTarget(f);
+      f.wob += .08*dt;
+      var wx = Math.cos(f.wob*1.3)*.35, wy = Math.sin(f.wob)*.5;
+      var ax = dx/dist*.07 + wx*.05, ay = dy/dist*.07 + wy*.05;
+      f.vx += ax*dt; f.vy += ay*dt;
+      var sp = Math.hypot(f.vx, f.vy);
+      if (sp > f.speed){ f.vx = f.vx/sp*f.speed; f.vy = f.vy/sp*f.speed; }
+      f.x += f.vx*dt; f.y += f.vy*dt;
+      var ang = Math.atan2(f.vy, f.vx)*180/Math.PI + 90;
+      f.el.style.transform = 'translate3d(' + (f.x-19) + 'px,' + (f.y-19) + 'px,0) rotate(' + ang + 'deg)';
+      if (now - f.lastHeart > 260){
+        f.lastHeart = now + Math.random()*120;
+        // heart appears behind the butterfly
+        var bx = f.x - f.vx*6, by = f.y - f.vy*6;
+        heart(bx, by);
+      }
+    }
+    requestAnimationFrame(loop);
+  }
+
+  function startButterflies(){
+    var n = W < 600 ? 4 : 7;
+    for (var i = 0; i < n; i++){
+      (function(k){ setTimeout(makeButterfly, k*700); })(i);
+    }
+    requestAnimationFrame(loop);
+  }
+
+  /* open the star */
+  var intro = document.getElementById('intro');
+  var card  = document.getElementById('card');
+  var opened = false;
+  function openStar(){
+    if (opened) return; opened = true;
+    intro.classList.add('open');
+    // burst of hearts from the center
+    var cx = W/2, cy = H/2;
+    for (var i = 0; i < 18; i++){ (function(k){ setTimeout(function(){ heart(cx + (Math.random()*60-30), cy + (Math.random()*60-30)); }, k*50); })(i); }
+    card.classList.add('show');
+    setTimeout(function(){ intro.classList.add('gone'); }, 1100);
+    setTimeout(startButterflies, 700);
+  }
+  intro.addEventListener('click', openStar);
+  intro.addEventListener('touchstart', function(e){ e.preventDefault(); openStar(); }, {passive:false});
+})();
+</script>
+</body>
+</html>
